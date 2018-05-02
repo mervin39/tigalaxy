@@ -1,0 +1,50 @@
+#board-hand-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#hand-area-container {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+#hand-container {
+  height: 100%;
+  border: 1px solid red;
+}
+
+#hand {
+  height: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.tile-container * {
+  overflow: visible;
+}
+
+
+
+
+#hand-controls-container {
+  height: 30px;
+}
+
+#hand .tile-container {
+  width: 160px;
+  height: 138.56px;
+}
+
+
+#hand .tile-container.zoomed {
+  transition: 150ms ease-in-out;
+  transform: scale(2) translateX(-60px);
+  z-index: 1;
+}
+
+#hand .tile-container.selected .tile-highlight {
+  fill: red;
+  opacity: 0.2;
+}

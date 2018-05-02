@@ -1,0 +1,59 @@
+body {
+  overflow: hidden;
+}
+
+#game-board-container {
+  position: relative;
+  background: #3f3f3f;
+  width: 550px;
+  pointer-events: none;
+}
+
+#game-board {
+  position: relative;
+  height: 606.2px;
+}
+
+#clockwise-arrow {
+  position: absolute;
+  left: 500px;
+}
+
+#anticlockwise-arrow {
+  position: absolute;
+  left: 25px;
+}
+
+.tile {
+  width: 100px;
+}
+
+.board-tile-container {
+  position: absolute;
+  width: 100px;
+  height: 86.6px;
+}
+
+.tile-image {
+  pointer-events: all;
+}
+
+#game-board > .tile-container.zoomed {
+  transition: 150ms ease-in-out;
+  transform-origin: 50% 50%;
+  transform: scale(2.5) translateY(0px);
+  z-index: 1;
+}
+
+.system-unplaced .tile-highlight {
+  stroke: black;
+  fill: white;
+}
+
+.system-unplaced.available .tile-highlight  {
+  fill: green;
+}
+
+.system-unplaced.unavailable .tile-highlight  {
+  fill: red;
+}

@@ -5,7 +5,17 @@
     <script src="/js/constructors/tile.js"></script>
     <script src="/js/routes/create.js"></script>
     <script src="/js/preload.js"></script>
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/hand.css">
+
   </head>
   <body>
+    <div id="main">
+      <div id="board-hand-container">
+        <% include ../partials/preview %>
+        <% include ../partials/board %>
+        <% include ../partials/hand %>
+      </div>
+    </div>
   </body>
 </html>

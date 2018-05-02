@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#main {
+  border: 1px solid black;
+  height: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+#menu-container {
+  border: 1px solid red;
+}
+
+#board-contaner {
+  border: 1px solid red;
+}
+
+.tile-container {
+  position: absolute;
+  width: 100px;
+  height: 86.6px;
+  pointer-events: none;
+}
+
+.tile-container > svg {
+  position: absolute;
+  pointer-events: none;
+}
+
+.mouse-events {
+  top: 0;
+  left: 0;
+  fill: transparent;
+}
+
+.mouse-events polygon {
+  pointer-events: fill;  
+}
+
+.tile {
+  width: 100%;
+}
+
+#preview-container {
+  width: 350px;
+  height: 301px;
+  border: 1px solid black;
+}
+
+#preview-container .tile-container {
+  width: 350px;
+  height: 301px;
+}
