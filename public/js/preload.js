@@ -1,13 +1,10 @@
 // This file is run first
 // and preloads tile data into global ti4 object.
 
-var ti4 = {};
-
 (function(){
   var isLoaded = {
     json: false
   };
-  
   fetch('json/systems.json', {method: 'get'})
     .then(function(res){
       res.json().then(function(data){
@@ -30,7 +27,8 @@ var ti4 = {};
     }
     if ( finishedLoading ) {
       // run main site;
-      console.log('all loaded')
+      console.log('all loaded');
+      window.onload = ti4.run();
     }
   }
 }())
