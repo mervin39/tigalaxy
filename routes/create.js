@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET /render. */
 router.get('/', function(req, res, next) {
-  res.send('create a galaxy')
+  res.render('pages/create.ejs')
 });
 
 module.exports = router;
