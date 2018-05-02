@@ -1,0 +1,335 @@
+{
+  "warpzone": {
+  	"system": "warpzone",
+  	"numBodies": 0,
+  	"bodyNames": [],
+  	"home": 0,
+  	"anomaly":0
+  },
+  "unplaced": {
+  	"system": "unplaced",
+  	"numBodies": 0,
+  	"bodyNames": [],
+  	"home": 0,
+  	"anomaly":0
+  },
+  "greenback": {
+  	"system": "greenback",
+  	"numBodies": 0,
+  	"bodyNames": [],
+  	"home": 0,
+  	"anomaly":0
+  },
+  "1": {
+    "numBodies": 1,
+    "bodyNames": ["jord"],
+    "home": "Sol",
+    "anomaly": 0
+  },
+  "2": {
+    "numBodies": 1,
+    "bodyNames": ["moll_primus"],
+    "home": "Mentak",
+    "anomaly": 0
+  },
+  "3": {
+    "numBodies": 1,
+    "bodyNames": ["darien"],
+    "home": "Yin",
+    "anomaly": 0
+  },
+  "4": {
+    "numBodies": 1,
+    "bodyNames": ["muuat"],
+    "home": "Muaat",
+    "anomaly": 0
+  },
+  "5": {
+    "numBodies": 1,
+    "bodyNames": ["nestphar"],
+    "home": "Arborec",
+    "anomaly": 0
+  },
+  "6": {
+    "numBodies": 1,
+    "bodyNames": ["[0.0.0]"],
+    "home": "The L1Z1x Mindnet",
+    "anomaly": 0
+  },
+  "7": {
+    "numBodies": 1,
+    "bodyNames": ["winnu"],
+    "home": "Winnu",
+    "anomaly": 0
+  },
+  "8": {
+    "numBodies": 1,
+    "bodyNames": ["mordai_ii"],
+    "home": "Nekro Virus",
+    "anomaly": 0
+  },
+  "9": {
+    "numBodies": 2,
+    "bodyNames": ["druaa", "maaluuk"],
+    "home": "The Naalu Collective",
+    "anomaly": 0
+  },
+  "10": {
+    "numBodies": 2,
+    "bodyNames": ["arc_prime", "wren_terra"],
+    "home": "The Barony of Letnev",
+    "anomaly": 0
+  },
+  "11": {
+    "numBodies": 2,
+    "bodyNames": ["lisis_ii", "ragh"],
+    "home": "The Clan of Saar",
+    "anomaly": 0
+  },
+  "12": {
+    "system": "Jol-Nar",
+    "numBodies": 2,
+    "bodyNames": ["jol", "nar"],
+    "home": "The Universities of Jol-Nar",
+    "anomaly": 0
+  },
+  "13": {
+    "numBodies": 2,
+    "bodyNames": ["trenlak", "quinarra"],
+    "home": "The Sardakk Norr",
+    "anomaly": 0
+  },
+  "14": {
+    "numBodies": 2,
+    "bodyNames": ["archon_ren", "archon_tau"],
+    "home": "The Xxcha Kingdom",
+    "anomaly": 0
+  },
+  "15": {
+    "numBodies": 2,
+    "bodyNames": ["retillion", "shalloq"],
+    "home": "The Yssaril Tribes",
+    "anomaly": 0
+  },
+  "16": {
+    "numBodies": 3,
+    "bodyNames": ["hercant", "arretze", "kamdorn"],
+    "home": "The Emirates of Hacan",
+    "anomaly": 0
+  },
+  "17": {
+    "system": "CreusGate",
+    "numBodies": 2,
+    "bodyNames": ["delta"],
+    "home": 1,
+    "anomaly": 0
+  },
+  "18": {
+    "system": "MecatolRex",
+    "numBodies": 1,
+    "bodyNames": ["mecatol_rex"],
+    "anomaly": 0
+  },
+  "19": {
+    "system": "Wellon",
+    "numBodies": 1,
+    "bodyNames": ["wellon"],
+    "anomaly": 0
+  },
+  "20": {
+    "system": "VefutII",
+    "numBodies": 1,
+    "bodyNames": ["vefut_ii"],
+    "anomaly": 0
+  },
+  "21": {
+    "system": "Thibah",
+    "numBodies": 1,
+    "bodyNames": ["thibah"],
+    "anomaly": 0
+  },
+  "22": {
+    "system": "TarMann",
+    "numBodies": 1,
+    "bodyNames": ["tarmann"],
+    "anomaly": 0
+  },
+  "23": {
+  	"system": "Saudor",
+  	"numBodies": 2,
+  	"bodyNames": ["saudor"],
+  	"anomaly":0
+  },
+  "24": {
+    "system": "MeharXull",
+    "numBodies": 2,
+    "bodyNames": ["mehar_xull"],
+    "anomaly": 0
+  },
+  "25": {
+    "system": "Quann",
+    "numBodies": 2,
+    "bodyNames": ["quann", "beta"],
+    "anomaly": 0,
+    "wormhole": "beta"
+  },
+  "26": {
+    "system": "Lodor",
+    "numBodies": 2,
+    "bodyNames": ["lodor", "alpha"],
+    "anomaly": 0,
+    "wormhole":	"alpha"
+  },
+  "27": {
+    "system": "NewAlbionStarpoint",
+    "numBodies": 2,
+    "bodyNames": ["new_albion", "starpoint"],
+    "anomaly": 0
+  },
+  "28": {
+    "system": "TorkanTequRan",
+    "numBodies": 2,
+    "bodyNames": ["torkan", "tequran"],
+    "anomaly": 0
+  },
+  "29": {
+    "system": "QucennRarron",
+    "numBodies": 2,
+    "bodyNames": ["qucenn", "rarron"],
+    "anomaly": 0
+  },
+  "30": {
+    "system": "MellonZohbat",
+    "numBodies": 2,
+    "bodyNames": ["mellon", "zohbat"],
+    "anomaly": 0
+  },
+  "31": {
+    "system": "LazarSakulag",
+    "numBodies": 2,
+    "bodyNames": ["lazar", "sakulag"],
+    "anomaly": 0
+  },
+  "32": {
+    "system": "DalBoothaXXehan",
+    "numBodies": 2,
+    "bodyNames": ["dal_bootha", "xxehan"],
+    "anomaly": 0
+  },
+  "33": {
+    "system": "CoorneeqResculon",
+    "numBodies": 2,
+    "bodyNames": ["coorneeq", "resculon"],
+    "anomaly": 0
+  },
+  "34": {
+    "system": "CentauriGral",
+    "numBodies": 2,
+    "bodyNames": ["centauri", "gral"],
+    "anomaly": 0
+  },
+  "35": {
+    "system": "BeregLirtaiv",
+    "numBodies": 2,
+    "bodyNames": ["bereg", "lirta_iv"],
+    "anomaly": 0
+  },
+  "36": {
+    "system": "ArnorLor",
+    "numBodies": 2,
+    "bodyNames": ["arnor", "lor"],
+    "anomaly": 0
+  },
+  "37": {
+    "system": "ArinamMeer",
+    "numBodies": 2,
+    "bodyNames": ["arinam", "meer"],
+    "anomaly": 0
+  },
+  "38": {
+    "system": "AbyzFria",
+    "numBodies": 2,
+    "bodyNames": ["abyz", "fria"],
+    "anomaly": 0
+  },
+  "39": {
+    "system": "alpha",
+    "numBodies": 1,
+    "bodyNames": ["alpha"],
+    "anomaly": 0,
+    "wormhole": "alpha"
+  },
+  "40": {
+    "system": "beta",
+    "numBodies": 1,
+    "bodyNames": ["beta"],
+    "anomaly": 0,
+    "wormhole": "beta"
+  },
+  "41": {
+    "system": "Gravity Rift",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "42": {
+    "system": "Nebula",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "43": {
+    "system": "Supernova",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "44": {
+    "system": "Asteroid Field",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "45": {
+    "system": "Asteroid Field",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+	  "46": {
+    "system": "Space",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "47": {
+    "system": "Space",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "48": {
+    "system": "Space",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "49": {
+    "system": "Space",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "50": {
+    "system": "Space",
+    "numBodies": 0,
+    "bodyNames": [],
+    "anomaly": 1
+  },
+  "51": {
+    "numBodies": 2,
+    "bodyNames": ["creuss"],
+    "home": "The Ghosts of Creuss",
+    "anomaly": 0
+  }
+}

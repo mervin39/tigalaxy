@@ -1,0 +1,501 @@
+{
+  "mecatol_rex": {
+    "name": "Mecatol Rex",
+    "trait": 0,
+    "resources": 1,
+    "influence": 6,
+    "tech": 0,
+    "color": "#6A4F49"
+  },
+  "abyz": {
+    "name" : "Abyz",
+    "trait": "hazardous",
+    "resources": 3,
+    "influence": 0,
+    "tech": 0,
+    "color": "#953941"
+  },
+  "arinam": {
+    "name" : "Arinam",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": "#C18988"
+  },
+  "arnor": {
+    "name" : "Arnor",
+    "trait": "industrial",
+    "resources": 2,
+    "influence": 1,
+    "tech": 0,
+    "color": "#9CD16B"
+  },
+  "bereg": {
+    "name" : "Bereg",
+    "trait": "hazardous",
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": "#9C6F90"
+  },
+  "centauri": {
+    "name" : "Centauri",
+    "trait": "cultural",
+    "resources": 1,
+    "influence": 3,
+    "tech": 0,
+    "color": "#984A57"
+  },
+  "coorneeq": {
+    "name" : "Coorneeq",
+    "trait": "cultural",
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": "#92A24B"
+  },
+  "dal_bootha": {
+    "name" : "Dal Bootha",
+    "trait": "cultural",
+    "resources": 0,
+    "influence": 2,
+    "tech": 0,
+    "color": "#739542"
+  },
+  "fria": {
+    "name" : "Fria",
+    "trait": "hazardous",
+    "resources": 2,
+    "influence": 0,
+    "tech": 0,
+    "color": "#858CA0"
+  },
+  "gral": {
+    "name" : "Gral",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 1,
+    "tech": "blue",
+    "color": "#6B6663"
+  },
+  "lazar": {
+    "name" : "Lazar",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 0,
+    "tech": "yellow",
+    "color": "#7E5D73"
+  },
+  "lirta_iv": {
+    "name" : "Lirta IV",
+    "trait": "hazardous",
+    "resources": 2,
+    "influence": 3,
+    "tech": 0,
+    "color": "#91C34C"
+  },
+  "lodor": {
+    "name" : "Lodor",
+    "trait": "cultural",
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": "#757C75"
+  },
+  "lor": {
+    "name" : "Lor",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": "#709D9E"
+  },
+  "meer": {
+    "name" : "Meer",
+    "trait": "hazardous",
+    "resources": 0,
+    "influence": 4,
+    "tech": "red",
+    "color": "#EA6E1A"
+  },
+  "mehar_xull": {
+    "name" : "Mehar Xull",
+    "trait": "hazardous",
+    "resources": 1,
+    "influence": 3,
+    "tech": "red",
+    "color": "#C4ED97"
+  },
+  "mellon": {
+    "name" : "Mellon",
+    "trait": "cultural",
+    "resources": 0,
+    "influence": 2,
+    "tech": 0,
+    "color": "#498B74"
+  },
+  "new_albion": {
+    "name" : "New Albion",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 1,
+    "tech": "green",
+    "color": "#925D23"
+  },
+  "quann": {
+    "name" : "Quann",
+    "trait": "cultural",
+    "resources": 2,
+    "influence": 1,
+    "tech": 0,
+    "color": "#6C2D6B"
+  },
+  "qucenn": {
+    "name" : "Qucen'n",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": "#72AD80"
+  },
+  "rarron": {
+    "name" : "Rarron",
+    "trait": "cultural",
+    "resources": 0,
+    "influence": 3,
+    "tech": 0,
+    "color": "#709033"
+  },
+  "resculon": {
+    "name" : "Resculon",
+    "trait": "cultural",
+    "resources": 2,
+    "influence": 0,
+    "tech": 0,
+    "color": "#E09662"
+  },
+  "sakulag": {
+    "name" : "Sakulag",
+    "trait": "hazardous",
+    "resources": 2,
+    "influence": 1,
+    "tech": 0,
+    "color": "#7A8E33"
+  },
+  "saudor": {
+    "name" : "Saudor",
+    "trait": "industrial",
+    "resources": 2,
+    "influence": 2,
+    "tech": 0,
+    "color": "#C9B2CD"
+  },
+  "starpoint": {
+    "name" : "Starpoint",
+    "trait": "hazardous",
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": "#E2E1F5"
+  },
+  "tarmann": {
+    "name" : "Tarmann",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 1,
+    "tech": "green",
+    "color": "#94966F"
+  },
+  "tequran": {
+    "name" : "Tequran",
+    "trait": "hazardous",
+    "resources": 2,
+    "influence": 0,
+    "tech": 0,
+    "color": "#766521"
+  },
+  "thibah": {
+    "name" : "Thibah",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 1,
+    "tech": "blue",
+    "color": "#97A28A"
+  },
+  "torkan": {
+    "name" : "Torkan",
+    "trait": "cultural",
+    "resources": 0,
+    "influence": 3,
+    "tech": 0,
+    "color": "#946D7E"
+  },
+  "vefut_ii": {
+    "name" : "Vefut II",
+    "trait": "hazardous",
+    "resources": 2,
+    "influence": 2,
+    "tech": 0,
+    "color": "#7A693D"
+  },
+  "wellon": {
+    "name" : "Wellon",
+    "trait": "industrial",
+    "resources": 1,
+    "influence": 2,
+    "tech": "yellow",
+    "color": "#BF9B88"
+  },
+  "xxehan": {
+    "name" : "Xxehan",
+    "trait": "cultural",
+    "resources": 1,
+    "influence": 1,
+    "tech": 0,
+    "color": "#AA6635"
+  },
+  "zohbat": {
+    "name" : "Zohbat",
+    "trait": "hazardous",
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": "#A6AA44"
+  },
+  "nestphar": {
+    "name" : "Nestphar",
+    "trait": 0,
+    "resources": 3,
+    "influence": 2,
+    "tech": 0,
+    "color": "#B2BE6B"
+  },
+  "creuss": {
+    "name" : "Creuss",
+    "trait": 0,
+    "resources": 4,
+    "influence": 2,
+    "tech": 0,
+    "color": "#6CA2D5"
+  },
+  "hercant": {
+    "name" : "Hercant",
+    "trait": 0,
+    "resources": 1,
+    "influence": 1,
+    "tech": 0,
+    "color": "#DA8334"
+  },
+  "arretze": {
+    "name" : "Arretze",
+    "trait": 0,
+    "resources": 2,
+    "influence": 0,
+    "tech": 0,
+    "color": "#A29667"
+  },
+  "kamdorn": {
+    "name" : "Kamdorn",
+    "trait": 0,
+    "resources": 0,
+    "influence": 1,
+    "tech": 0,
+    "color": "#CEC542"
+  },
+  "jol": {
+    "name" : "Jol",
+    "trait": 0,
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": "#8CA68B"
+  },
+  "nar": {
+    "name" : "Nar",
+    "trait": 0,
+    "resources": 2,
+    "influence": 3,
+    "tech": 0,
+    "color": "#8CA1D0"
+  },
+  "[0.0.0]": {
+    "name" : "[0.0.0]",
+    "trait": 0,
+    "resources": 5,
+    "influence": 0,
+    "tech": 0,
+    "color": "#878862"
+  },
+  "arc_prime": {
+    "name" : "Arc Prime",
+    "trait": 0,
+    "resources": 4,
+    "influence": 0,
+    "tech": 0,
+    "color": "#9E8E7E"
+  },
+  "wren_terra": {
+    "name" : "Wren Terra",
+    "trait": 0,
+    "resources": 2,
+    "influence": 1,
+    "tech": 0,
+    "color": "#3E8D43"
+  },
+  "moll_primus": {
+    "name" : "Moll Primus",
+    "trait": 0,
+    "resources": 4,
+    "influence": 1,
+    "tech": 0,
+    "color": "#C28F4C"
+  },
+  "muuat": {
+    "name" : "Muuat",
+    "trait": 0,
+    "resources": 4,
+    "influence": 1,
+    "tech": 0,
+    "color": "#E34247"
+  },
+  "druaa": {
+    "name" : "Druaa",
+    "trait": 0,
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": "#8A8B7D"
+  },
+  "maaluuk": {
+    "name" : "Maaluuk",
+    "trait": 0,
+    "resources": 0,
+    "influence": 2,
+    "tech": 0,
+    "color": "#6A5B4D"
+  },
+  "mordai_ii": {
+    "name" : "Mordai II",
+    "trait": 0,
+    "resources": 4,
+    "influence": 0,
+    "tech": 0,
+    "color": ""
+  },
+  "lisis_ii": {
+    "name" : "Lisis II",
+    "trait": 0,
+    "resources": 1,
+    "influence": 0,
+    "tech": 0,
+    "color": ""
+  },
+  "ragh": {
+    "name" : "Ragh",
+    "trait": 0,
+    "resources": 2,
+    "influence": 1,
+    "tech": 0,
+    "color": ""
+  },
+  "trenlak": {
+    "name" : "Trenlak",
+    "trait": 0,
+    "resources": 1,
+    "influence": 0,
+    "tech": 0,
+    "color": ""
+  },
+  "quinarra": {
+    "name" : "Quinarra",
+    "trait": 0,
+    "resources": 3,
+    "influence": 1,
+    "tech": 0,
+    "color": ""
+  },
+  "jord": {
+    "name" : "Jord",
+    "trait": 0,
+    "resources": 4,
+    "influence": 2,
+    "tech": 0,
+    "color": ""
+  },
+  "winnu": {
+    "name" : "Winnu",
+    "trait": 0,
+    "resources": 3,
+    "influence": 4,
+    "tech": 0,
+    "color": ""
+  },
+  "archon_ren": {
+    "name" : "Archon Ren",
+    "trait": 0,
+    "resources": 2,
+    "influence": 3,
+    "tech": 0,
+    "color": ""
+  },
+  "archon_tau": {
+    "name" : "Archon Tau",
+    "trait": 0,
+    "resources": 1,
+    "influence": 1,
+    "tech": 0,
+    "color": ""
+  },
+  "darien": {
+    "name" : "Darien",
+    "trait": 0,
+    "resources": 4,
+    "influence": 4,
+    "tech": 0,
+    "color": ""
+  },
+  "retillion": {
+    "name" : "Retillion",
+    "trait": 0,
+    "resources": 2,
+    "influence": 3,
+    "tech": 0,
+    "color": ""
+  },
+  "shalloq": {
+    "name" : "Shalloq",
+    "trait": 0,
+    "resources": 1,
+    "influence": 2,
+    "tech": 0,
+    "color": ""
+  },
+  "alpha": {
+    "name" : "Alpha",
+    "trait": 0,
+    "resources": 0,
+    "influence": 0,
+    "tech": 0
+  },
+  "beta": {
+    "name" : "Beta",
+    "trait": 0,
+    "resources": 0,
+    "influence": 0,
+    "tech": 0
+  },
+  "gravity_rift": {
+    "name" : "Gravity Rift",
+    "trait": 0,
+    "resources": 0,
+    "influence": 0,
+    "tech": 0
+  },
+  "delta": {
+    "trait": 0,
+    "resources": 0,
+    "influence": 0,
+    "tech": 0
+  }
+}
