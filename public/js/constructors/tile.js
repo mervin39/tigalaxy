@@ -102,8 +102,13 @@ ti4.constructors.Tile = (function(){
     elTile.style.top  = pos[1] + 'px';
   };
   
-  Tile.prototype.addToHand = function(){
-    
+  Tile.prototype.addToHand = function(i){
+    console.log('adding to hand position ', i);
+    var elTile = this.el;
+    elTile.position.hand = i;
+    ti4.hand.el.appendChild(elTile);
+    var pos = ti4.hand.getHexPos(i);
+    elTile.style.top = pos + 'px';
   };
   
   
