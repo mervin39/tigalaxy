@@ -1,6 +1,6 @@
 // returns tile constructor
 
-ti4.Tile = (function(){
+ti4.constructors.Tile = (function(){
   
   var createTileElement = (function(){
     var createTileElement = function(system, id){
@@ -28,6 +28,7 @@ ti4.Tile = (function(){
       
       container.appendChild(element);
       container.appendChild(mouseEventsSvg);
+      container.position = {};
       return container;
     };
     
@@ -83,10 +84,22 @@ ti4.Tile = (function(){
   
   var Tile = function(system){
     this.system = system;
+    this.el = createTileElement(system);
   };
   
-  Tile.prototype.addToBoard = function(){
-    console.log('add tile to board');
+  // add this tile to board
+  // after removing whatever is already there
+  Tile.prototype.addToBoard = function(ring, n){
+    console.log('adding to ', ring, n);
+    // what is currently at ring, n?
+    
+    var elTile = this.el;
+    elTile.position.ring = ring;
+    elTile.position.n = n;
+    var pos = ti4.board.getHexPos(ring, n);
+    ti4.board.el.appendChild(elTile);
+    elTile.style.left = pos[0] + 'px';
+    elTile.style.top  = pos[1] + 'px';
   };
   
   Tile.prototype.addToHand = function(){
