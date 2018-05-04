@@ -1,9 +1,9 @@
 ti4.constructors.Hand = (function(){
   var Hand = function(hand){
-    var z = 4
+    var z = 44
     var hand = []
     for ( let q = 0; q < z; q++){
-      hand.push(q + 19)
+      hand.push(q + 1)
     }
     this.el = document.getElementById('hand');
     this.layout = [];
@@ -20,8 +20,9 @@ ti4.constructors.Hand = (function(){
   }
   
   Hand.prototype.getHexPos = function(i){
-    var handHeight = this.el.offsetHeight;
-    var tileHeight = 100;
+    var handHeight = this.el.clientHeight;
+    var tileHeight = 
+      this.el.getElementsByClassName('tile-container')[0].clientHeight || 138.56;
     var numberOfTiles = this.layout.length;
     var x;
     if ( numberOfTiles * tileHeight < handHeight ) {

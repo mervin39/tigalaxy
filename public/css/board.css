@@ -27,9 +27,7 @@ body {
 .tile {
   width: 100px;
 }
-
-.board-tile-container {
-  position: absolute;
+#game-board .tile-container {
   width: 100px;
   height: 86.6px;
 }

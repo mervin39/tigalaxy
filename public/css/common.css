@@ -21,8 +21,6 @@ body {
 
 .tile-container {
   position: absolute;
-  width: 100px;
-  height: 86.6px;
   pointer-events: none;
 }
 
@@ -30,20 +28,27 @@ body {
   position: absolute;
   pointer-events: none;
 }
+.tile-container > .tile {
+  width: 100%;
+}
 
+.tile-container > .mouse-events {
+  height: 100%;
+}
 .mouse-events {
   top: 0;
   left: 0;
   fill: transparent;
+  height: 100px;
 }
 
 .mouse-events polygon {
   pointer-events: fill;
+  /*stroke: red; */
+  /*fill: blue;*/
 }
 
-.tile {
-  width: 100%;
-}
+
 
 #preview-container {
   width: 350px;
