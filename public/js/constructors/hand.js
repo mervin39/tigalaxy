@@ -5,9 +5,7 @@ ti4.constructors.Hand = (function(){
     for ( let q = 0; q < z; q++){
       hand.push(q + 19)
     }
-    console.log(hand)
     this.el = document.getElementById('hand');
-    console.log(this.el)
     this.layout = [];
     for ( let i = 0; i < hand.length; i++ ) {
       this.layout[i] = new ti4.constructors.Tile(ti4.systems[hand[i]]);
@@ -23,7 +21,6 @@ ti4.constructors.Hand = (function(){
   
   Hand.prototype.getHexPos = function(i){
     var handHeight = this.el.offsetHeight;
-    console.log(handHeight)
     var tileHeight = 100;
     var numberOfTiles = this.layout.length;
     var x;

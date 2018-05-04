@@ -38,7 +38,7 @@ body {
 }
 
 .mouse-events polygon {
-  pointer-events: fill;  
+  pointer-events: fill;
 }
 
 .tile {

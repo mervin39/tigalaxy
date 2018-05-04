@@ -23,36 +23,11 @@ ti4.constructors.Tile = (function(){
       highlight.setAttribute('class', 'tile-highlight');
       highlight.setAttribute('fill', 'transparent');
       element.appendChild(highlight);
-      
-      var mouseEventsSvg = createMouseEventsSvg();
-      
       container.appendChild(element);
-      container.appendChild(mouseEventsSvg);
       container.position = {};
       return container;
     };
-    
-    function createMouseEventsSvg(){
-      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      svg.setAttribute('class', 'mouse-events');
-      svg.setAttribute('viewBox', '0 0 100 86.6');
-      var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-      polygon.setAttribute('points', '0,43.3 25,0 75,0 100,43.3 75,86.6 25,86.6');
-      var handPolygon = '0,   43.3 ' +     
-        '25,  0 ' +     // top left
-        '75,  0 ' +     // top right
-        '97,  38.3 ' +  // 
-        '140, 38.3 ' +
-        '140, 48.3 ' +
-        '97,  48.3 ' +
-        '75,  86.6 ' + // bottom right
-        '25,  86.6 ';   // bottom left
-      polygon.setAttribute('points', handPolygon);
-      polygon.setAttribute('fill', 'transparent');
-      svg.appendChild(polygon);
-      return svg;
-    }
-    
+
     function clipImage(url, id){
       var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       svg.setAttribute('viewBox', '0 0 100 86.6');
@@ -100,6 +75,7 @@ ti4.constructors.Tile = (function(){
     ti4.board.el.appendChild(elTile);
     elTile.style.left = pos[0] + 'px';
     elTile.style.top  = pos[1] + 'px';
+    this.attachMouseEventsElement('board');
   };
   
   Tile.prototype.addToHand = function(i){
@@ -109,8 +85,38 @@ ti4.constructors.Tile = (function(){
     ti4.hand.el.appendChild(elTile);
     var pos = ti4.hand.getHexPos(i);
     elTile.style.top = pos + 'px';
+    this.attachMouseEventsElement('hand');
   };
   
-  
+  Tile.prototype.attachMouseEventsElement = function(type){
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'mouse-events');
+    svg.setAttribute('viewBox', '0 0 100 86.6');
+    var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    polygon.setAttribute('points', '0,43.3 25,0 75,0 100,43.3 75,86.6 25,86.6');
+    var points = {
+      hand:   '0,   43.3 ' +     
+              '25,  0 ' +     // top left
+              '75,  0 ' +     // top right
+              '97,  38.3 ' +  // 
+              '140, 38.3 ' +
+              '140, 48.3 ' +
+              '97,  48.3 ' +
+              '75,  86.6 ' + // bottom right
+              '25,  86.6 ',   // bottom left
+              
+      board:  '0,   43.3 ' +     
+              '25,  0 ' +     // top left
+              '75,  0 ' +     // top right
+              '100, 43.3 ' +  // right
+              '75,  86.6 ' +  // bottom right
+              '25,  86.6 ' +  // bottom left
+              '0,   43.3'        // left
+    }
+    polygon.setAttribute('points', points[type]);
+    polygon.setAttribute('fill', 'transparent');
+    svg.appendChild(polygon);
+    this.el.appendChild(svg);
+  }
   return Tile;
 }());
