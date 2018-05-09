@@ -124,19 +124,28 @@ ti4.constructors.Tile = (function(){
   };
   
   Tile.prototype.handMouseEnter = function() {
-    console.log('hovering over hand tile: ', this.system);
+    // console.log('hovering over hand tile: ', this.system);
   };
   
   Tile.prototype.handClick = function() {
-    console.log('clicked hand tile: ', this.position);
+    // console.log('clicked hand tile: ', this.position);
   };
   
   Tile.prototype.boardMouseEnter = function() {
-    console.log('hovering over board tile: ', this.system);
+    // console.log('hovering over board tile: ', this.system);
   };
   
   Tile.prototype.boardClick = function(){
-    console.log('clicked board tile: ', this.position);
+    // console.log('clicked board tile: ', this.position);
+  };
+  
+  // available, unavailable, false
+  Tile.prototype.highlightClass = function(className) {
+    this.el.classList.remove('available');
+    this.el.classList.remove('unavailable');
+    if ( className ) {
+      this.el.classList.add(className);
+    }
   };
   
   return Tile;
