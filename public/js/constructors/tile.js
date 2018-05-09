@@ -1,3 +1,4 @@
+/*global ti4*/
 // returns tile constructor
 
 ti4.constructors.Tile = (function(){
@@ -12,7 +13,7 @@ ti4.constructors.Tile = (function(){
         url = '/images/tiles/jpg/tile_' + tileNum + '.jpg';
         element = clipImage(url, id);
       } else {
-        element = tileSvg(system);
+        // element = tileSvg(system);
       }
       container = document.createElement('div');
       container.classList.add('tile-container');
@@ -128,7 +129,23 @@ ti4.constructors.Tile = (function(){
   };
   
   Tile.prototype.handClick = function() {
+    var tile = this;
     // console.log('clicked hand tile: ', this.position);
+    // clicked a hand tile
+    
+    // if another hand tile was selected before then unhightlight it
+    if ( ti4.state.selectedHandTile ) {
+      ti4.state.selectedHandTile.highlightClass('false');
+    }
+
+    // set this as the selected hand tile
+    if ( ti4.state.selectedHandTile != tile ) {
+      ti4.state.selectedHandTile = tile;
+      tile.highlightClass('selected');
+    } else {
+      ti4.state.selectedHandTile = '';
+      tile.highlightClass('false');
+    }
   };
   
   Tile.prototype.boardMouseEnter = function() {
@@ -141,10 +158,13 @@ ti4.constructors.Tile = (function(){
   
   // available, unavailable, false
   Tile.prototype.highlightClass = function(className) {
-    this.el.classList.remove('available');
-    this.el.classList.remove('unavailable');
+    var tile = this;
+    ['available', 'unavailable', 'selected']
+      .forEach(function(c){
+        tile.el.classList.remove(c);
+    });
     if ( className ) {
-      this.el.classList.add(className);
+      tile.el.classList.add(className);
     }
   };
   
