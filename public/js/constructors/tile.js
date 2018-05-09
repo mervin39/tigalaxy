@@ -24,7 +24,6 @@ ti4.constructors.Tile = (function(){
       highlight.setAttribute('fill', 'transparent');
       element.appendChild(highlight);
       container.appendChild(element);
-      container.position = {};
       return container;
     };
 
@@ -60,6 +59,7 @@ ti4.constructors.Tile = (function(){
   var Tile = function(system){
     this.system = system;
     this.el = createTileElement(system);
+    this.position = {};
   };
   
   // add this tile to board
@@ -69,23 +69,27 @@ ti4.constructors.Tile = (function(){
     // what is currently at ring, n?
     
     var elTile = this.el;
-    elTile.position.ring = ring;
-    elTile.position.n = n;
+    this.position.ring = ring;
+    this.position.n = n;
     var pos = ti4.board.getHexPos(ring, n);
     ti4.board.el.appendChild(elTile);
     elTile.style.left = pos[0] + 'px';
     elTile.style.top  = pos[1] + 'px';
     this.attachMouseEventsElement('board');
+    this.el.addEventListener('click', this.boardClick.bind(this));
+    this.el.addEventListener('mouseenter', this.boardMouseEnter.bind(this));
   };
   
   Tile.prototype.addToHand = function(i){
     console.log('adding to hand position ', i);
     var elTile = this.el;
-    elTile.position.hand = i;
+    this.position.hand = i;
     ti4.hand.el.appendChild(elTile);
     var pos = ti4.hand.getHexPos(i);
     elTile.style.top = pos + 'px';
     this.attachMouseEventsElement('hand');
+    this.el.addEventListener('click', this.handClick.bind(this));
+    this.el.addEventListener('mouseenter', this.handMouseEnter.bind(this));
   };
   
   Tile.prototype.attachMouseEventsElement = function(type){
@@ -112,11 +116,28 @@ ti4.constructors.Tile = (function(){
               '75,  86.6 ' +  // bottom right
               '25,  86.6 ' +  // bottom left
               '0,   43.3'        // left
-    }
+    };
     polygon.setAttribute('points', points[type]);
     polygon.setAttribute('fill', 'transparent');
     svg.appendChild(polygon);
     this.el.appendChild(svg);
-  }
+  };
+  
+  Tile.prototype.handMouseEnter = function() {
+    console.log('hovering over hand tile: ', this.system);
+  };
+  
+  Tile.prototype.handClick = function() {
+    console.log('clicked hand tile: ', this.position);
+  };
+  
+  Tile.prototype.boardMouseEnter = function() {
+    console.log('hovering over board tile: ', this.system);
+  };
+  
+  Tile.prototype.boardClick = function(){
+    console.log('clicked board tile: ', this.position);
+  };
+  
   return Tile;
 }());
