@@ -1,3 +1,5 @@
+/*global ti4*/
+
 ti4.constructors.Board = (function(){
   var Board = function(layout){
     layout = [['unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced',]];
@@ -45,5 +47,58 @@ ti4.constructors.Board = (function(){
     y = ( 25 * Math.sqrt(3) )* j;
     return [x, y];
   };
+  
+  
+  // return six coordinates of six adjacent hexes
+  Board.prototype.getAdjacentHexes = function (ring, n){
+    var mod = function(x, ring){
+      return ( x + ring * 6 ) % ( ring * 6 );
+    };
+    
+    var tiles = [];
+    if ( ring == 0 ) {
+      [0, 1, 2, 3, 4, 5].forEach(function(i){
+        tiles.push( [ 1, i ] );
+      });
+    }
+    else {
+      // same ring, either side
+      tiles.push( 
+        [ ring, mod( n + 1, ring ) ], 
+        [ ring, mod( n - 1, ring ) ]
+      );
+      
+      var radial = Math.floor(n / ring);
+      var radialOffset = n % ring;
+      // is it on a radial?
+      if ( radialOffset === 0 ) {
+        // if so, has one adjacent inner tile and three adjacent outer tiles
+        var innerTile  = [ ring - 1, radial * ( ring - 1 )];
+        
+        var outerMidN = radial * ( ring + 1 );
+        var outerMidTile = [ ring + 1, outerMidN ];
+        var outerLeftTile = [ ring + 1, mod( outerMidN - 1, ring + 1 ) ];
+        var outerRightTile = [ ring + 1, mod( outerMidN + 1, ring + 1 ) ];
+        tiles.push(innerTile, outerMidTile, outerLeftTile, outerRightTile);
+      } else {
+        // if not, has two adjacent inner tiles and two adjacent outer tiles
+        // first drop down to closest radial
+        var innerLeftN  = ( mod( radial * ( ring - 1) + radialOffset - 1, ring - 1 ) );
+        var innerRightN= mod( innerLeftN + 1, ring - 1 );
+        
+        var outerLeftN = ( mod( radial * ( ring + 1) + radialOffset, ring + 1 ) );
+        var outerRightN = ( mod( outerLeftN + 1, ring + 1 ) );
+        tiles.push(
+          [ ring - 1, innerLeftN  ],
+          [ ring - 1, innerRightN ], 
+          [ ring + 1, outerLeftN  ],
+          [ ring + 1, outerRightN ]
+        );
+      }
+      
+    }
+    return tiles;
+  };
+  
   return Board;
 }());
