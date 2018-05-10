@@ -91,6 +91,11 @@ ti4.constructors.Board = (function(){
         }
       }
     }
+    // in case player has no legal options
+    if ( tiles.available.length == 0 ) {
+      tiles.available = tiles.unavailable;
+      tiles.unavailable = [];
+    }
     return tiles;
     
     
