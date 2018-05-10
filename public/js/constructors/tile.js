@@ -140,7 +140,19 @@ ti4.constructors.Tile = (function(){
     
     // if another hand tile was selected before then unhightlight it
     if ( ti4.state.selectedHandTile ) {
+      ti4.state.restricted.available.forEach(function(tile){
+        tile.highlightClass(false);
+      });
+      ti4.state.restricted.unavailable.forEach(function(tile){
+        tile.highlightClass(false);
+      });
+      ti4.state.restricted = {};
       ti4.state.selectedHandTile.highlightClass('false');
+      if ( ti4.state.selectedHandTile == this ) {
+        ti4.state.selectedHandTile = false;
+        return;
+      }
+      ti4.state.selectedHandTile = false;
     }
 
     // set this as the selected hand tile
@@ -151,11 +163,11 @@ ti4.constructors.Tile = (function(){
       ti4.state.selectedHandTile = '';
       tile.highlightClass('false');
     }
-    var tiles = ti4.board.getAvailableHexes(tile);
-    tiles.available.forEach(function(hex){
+    ti4.state.restricted = ti4.board.getAvailableHexes(tile);
+    ti4.state.restricted.available.forEach(function(hex){
       hex.highlightClass('available');
     });
-    tiles.unavailable.forEach(function(hex){
+    ti4.state.restricted.unavailable.forEach(function(hex){
       hex.highlightClass('unavailable');
     });
   };

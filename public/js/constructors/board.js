@@ -158,6 +158,10 @@ ti4.constructors.Board = (function(){
     
   };
   
+  Board.prototype.clearHighlights = function(){
+    ti4.state.restrictions.available
+  };
+  
   Board.prototype.getTileAtPos = function(arg0, arg1) {
     var ring, n;
     if ( Array.isArray(arg0) ) {
