@@ -66,19 +66,24 @@ ti4.constructors.Tile = (function(){
   // add this tile to board
   // after removing whatever is already there
   Tile.prototype.addToBoard = function(ring, n){
+    var tile = this;
     console.log('adding to ', ring, n);
     // what is currently at ring, n?
     
-    var elTile = this.el;
-    this.position.ring = ring;
-    this.position.n = n;
+    if ( ti4.board.layout[ring][n] != tile ) {
+      ti4.board.layout[ring][n].el.remove();
+      ti4.board.layout[ring][n] = tile
+    }
+    var elTile = tile.el;
+    tile.position.ring = ring;
+    tile.position.n = n;
     var pos = ti4.board.getHexPos(ring, n);
     ti4.board.el.appendChild(elTile);
     elTile.style.left = pos[0] + 'px';
     elTile.style.top  = pos[1] + 'px';
-    this.attachMouseEventsElement('board');
-    this.el.addEventListener('click', this.boardClick.bind(this));
-    this.el.addEventListener('mouseenter', this.boardMouseEnter.bind(this));
+    tile.attachMouseEventsElement('board');
+    tile.el.addEventListener('click', tile.boardClick.bind(tile));
+    tile.el.addEventListener('mouseenter', tile.boardMouseEnter.bind(tile));
   };
   
   Tile.prototype.addToHand = function(i){
