@@ -151,6 +151,13 @@ ti4.constructors.Tile = (function(){
       ti4.state.selectedHandTile = '';
       tile.highlightClass('false');
     }
+    var tiles = ti4.board.getAvailableHexes(tile);
+    tiles.available.forEach(function(hex){
+      hex.highlightClass('available');
+    });
+    tiles.unavailable.forEach(function(hex){
+      hex.highlightClass('unavailable');
+    });
   };
   
   Tile.prototype.boardMouseEnter = function() {
