@@ -67,20 +67,23 @@ ti4.constructors.Tile = (function(){
   // after removing whatever is already there
   Tile.prototype.addToBoard = function(ring, n){
     var tile = this;
+    
     console.log('adding to ', ring, n);
     // what is currently at ring, n?
     
     if ( ti4.board.layout[ring][n] != tile ) {
       ti4.board.layout[ring][n].el.remove();
-      ti4.board.layout[ring][n] = tile
+      ti4.board.layout[ring][n] = tile;
     }
-    var elTile = tile.el;
     tile.position.ring = ring;
     tile.position.n = n;
+    this.position.hand = false;
     var pos = ti4.board.getHexPos(ring, n);
-    ti4.board.el.appendChild(elTile);
-    elTile.style.left = pos[0] + 'px';
-    elTile.style.top  = pos[1] + 'px';
+    ti4.board.el.appendChild(tile.el);
+    tile.el.style.left = pos[0] + 'px';
+    tile.el.style.top  = pos[1] + 'px';
+    // clear any transform stuff
+    tile.el.style.transform = '';
     tile.attachMouseEventsElement('board');
     tile.el.addEventListener('click', tile.boardClick.bind(tile));
     tile.el.addEventListener('mouseenter', tile.boardMouseEnter.bind(tile));
@@ -134,6 +137,8 @@ ti4.constructors.Tile = (function(){
   };
   
   Tile.prototype.handClick = function() {
+    // check this is a hand tile
+    if ( !this.position.hand ) { return }
     var tile = this;
     // console.log('clicked hand tile: ', this.position);
     // clicked a hand tile
@@ -176,8 +181,45 @@ ti4.constructors.Tile = (function(){
     // console.log('hovering over board tile: ', this.system);
   };
   
+  Tile.prototype.animateMoveTo = function(to, callback){
+    var from, fromPos, toPos, dx, dy, ds;
+    from = this;
+    fromPos = getPosition(from.el);
+    toPos = getPosition(to.el);
+    dx = toPos.x - fromPos.x;
+    dy = toPos.y - fromPos.y;
+    ds =  to.el.clientWidth / from.el.clientWidth;
+    from.el.addEventListener('transitionend', callback, {once: true});
+    from.el.style.transition = 'all 0.5s ease-out';
+    from.el.style.transformOrigin = 'top left';
+    from.el.style.transform  = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + ds + ')';
+    
+    function getPosition(element) {
+      var xPosition = 0;
+      var yPosition = 0;
+  
+      while(element) {
+          xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+          yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+          element = element.offsetParent;
+      }
+  
+      return { x: xPosition, y: yPosition };
+    }
+  };
+  
   Tile.prototype.boardClick = function(){
     // console.log('clicked board tile: ', this.position);
+    var boardTile = this;
+
+    if (ti4.state.restricted.available && ti4.state.restricted.available.indexOf(boardTile) > -1) {
+      var handTile = ti4.state.selectedHandTile;
+      // ti4.state.selectedHandTile = false;
+      handTile.handClick();
+      handTile.animateMoveTo(this, function(){
+        handTile.addToBoard(boardTile.position.ring, boardTile.position.n);
+      });
+    }
   };
   
   // available, unavailable, false
