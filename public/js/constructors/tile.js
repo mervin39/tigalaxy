@@ -2,16 +2,93 @@
 // returns tile constructor
 
 ti4.constructors.Tile = (function(){
+  var Tile = function(system){
+    this.system = system;
+    this.el = createTileElement(system, this);
+    this.position = {};
+  };
+  
+  var eventHandlers = {
+    handMouseEnter: function() {
+      var tile = this.tile;
+      // check this is a hand tile
+      if ( !tile.position.hand ) { return }
+      tile.el.classList.add('zoomed');
+    },
+    
+    handMouseLeave: function() {
+      var tile = this.tile;
+      tile.el.classList.remove('zoomed');
+    },
+    
+    handClick:  function(tile) {
+      tile = this.tile || tile;
+      // console.log('clicked hand tile: ', this.position);
+      // clicked a hand tile
+      
+      // if another hand tile was selected before then unhightlight it
+      if ( ti4.state.selectedHandTile ) {
+        ti4.state.restricted.available.forEach(function(tile){
+          tile.highlightClass(false);
+        });
+        ti4.state.restricted.unavailable.forEach(function(tile){
+          tile.highlightClass(false);
+        });
+        ti4.state.restricted = {};
+        ti4.state.selectedHandTile.highlightClass('false');
+        if ( ti4.state.selectedHandTile == tile ) {
+          ti4.state.selectedHandTile = false;
+          return;
+        }
+        ti4.state.selectedHandTile = false;
+      }
+  
+      // set this as the selected hand tile
+      if ( ti4.state.selectedHandTile != tile ) {
+        ti4.state.selectedHandTile = tile;
+        tile.highlightClass('selected');
+      } else {
+        ti4.state.selectedHandTile = '';
+        tile.highlightClass('false');
+      }
+      ti4.state.restricted = ti4.board.getAvailableHexes(tile);
+      ti4.state.restricted.available.forEach(function(hex){
+        hex.highlightClass('available');
+      });
+      ti4.state.restricted.unavailable.forEach(function(hex){
+        hex.highlightClass('unavailable');
+      });
+    },
+    
+    boardClick:  function(){
+      // console.log('clicked board tile: ', this.position);
+      var boardTile = this.tile;
+  
+      if (ti4.state.restricted.available && ti4.state.restricted.available.indexOf(boardTile) > -1) {
+        var handTile = ti4.state.selectedHandTile;
+        eventHandlers.handClick(handTile);
+        handTile.el.removeEventListener('mouseenter', eventHandlers.handMouseEnter);
+        handTile.el.removeEventListener('click', eventHandlers.handClick);
+        handTile.animateMoveTo(boardTile, function(){
+          handTile.addToBoard(boardTile.position.ring, boardTile.position.n);
+        });
+      }
+    },
+    
+    boardMouseEnter:  function() {
+      // console.log('hovering over board tile: ', this.system);
+    }
+  };
   
   var createTileElement = (function(){
-    var createTileElement = function(system, id){
+    var createTileElement = function(system, tile){
       var raster = true;
     
       var url, element, container;
       if (raster){
         var tileNum = system.tileNumber;
         url = '/images/tiles/jpg/tile_' + tileNum + '.jpg';
-        element = clipImage(url, id);
+        element = clipImage(url, 'idFixMe');
       } else {
         // element = tileSvg(system);
       }
@@ -25,6 +102,7 @@ ti4.constructors.Tile = (function(){
       highlight.setAttribute('fill', 'transparent');
       element.appendChild(highlight);
       container.appendChild(element);
+      container.tile = tile;
       return container;
     };
 
@@ -57,12 +135,6 @@ ti4.constructors.Tile = (function(){
     return createTileElement;
   }());
   
-  var Tile = function(system){
-    this.system = system;
-    this.el = createTileElement(system);
-    this.position = {};
-  };
-  
   // add this tile to board
   // after removing whatever is already there
   Tile.prototype.addToBoard = function(ring, n){
@@ -85,8 +157,8 @@ ti4.constructors.Tile = (function(){
     // clear any transform stuff
     tile.el.style.transform = '';
     tile.attachMouseEventsElement('board');
-    tile.el.addEventListener('click', tile.boardClick.bind(tile));
-    tile.el.addEventListener('mouseenter', tile.boardMouseEnter.bind(tile));
+    tile.el.addEventListener('click', eventHandlers.boardClick);
+    tile.el.addEventListener('mouseenter', eventHandlers.boardMouseEnter);
   };
   
   Tile.prototype.addToHand = function(i){
@@ -97,9 +169,9 @@ ti4.constructors.Tile = (function(){
     var pos = ti4.hand.getHexPos(i);
     elTile.style.top = pos + 'px';
     this.attachMouseEventsElement('hand');
-    this.el.addEventListener('click', this.handClick.bind(this));
-    this.el.addEventListener('mouseenter', this.handMouseEnter.bind(this));
-    this.el.addEventListener('mouseleave', this.handMouseLeave.bind(this));
+    this.el.addEventListener('click', eventHandlers.handClick);
+    this.el.addEventListener('mouseenter', eventHandlers.handMouseEnter);
+    this.el.addEventListener('mouseleave', eventHandlers.handMouseLeave);
   };
   
   Tile.prototype.attachMouseEventsElement = function(type){
@@ -133,62 +205,7 @@ ti4.constructors.Tile = (function(){
     this.el.appendChild(svg);
   };
   
-  Tile.prototype.handMouseEnter = function() {
-    // check this is a hand tile
-    if ( !this.position.hand ) { return }
-    this.el.classList.add('zoomed');
-  };
-  
-  Tile.prototype.handMouseLeave = function() {
-    // check this is a hand tile
-    if ( !this.position.hand ) { return }
-    this.el.classList.remove('zoomed');
-  };
-  
-  Tile.prototype.handClick = function() {
-    // check this is a hand tile
-    if ( !this.position.hand ) { return }
-    var tile = this;
-    // console.log('clicked hand tile: ', this.position);
-    // clicked a hand tile
-    
-    // if another hand tile was selected before then unhightlight it
-    if ( ti4.state.selectedHandTile ) {
-      ti4.state.restricted.available.forEach(function(tile){
-        tile.highlightClass(false);
-      });
-      ti4.state.restricted.unavailable.forEach(function(tile){
-        tile.highlightClass(false);
-      });
-      ti4.state.restricted = {};
-      ti4.state.selectedHandTile.highlightClass('false');
-      if ( ti4.state.selectedHandTile == this ) {
-        ti4.state.selectedHandTile = false;
-        return;
-      }
-      ti4.state.selectedHandTile = false;
-    }
 
-    // set this as the selected hand tile
-    if ( ti4.state.selectedHandTile != tile ) {
-      ti4.state.selectedHandTile = tile;
-      tile.highlightClass('selected');
-    } else {
-      ti4.state.selectedHandTile = '';
-      tile.highlightClass('false');
-    }
-    ti4.state.restricted = ti4.board.getAvailableHexes(tile);
-    ti4.state.restricted.available.forEach(function(hex){
-      hex.highlightClass('available');
-    });
-    ti4.state.restricted.unavailable.forEach(function(hex){
-      hex.highlightClass('unavailable');
-    });
-  };
-  
-  Tile.prototype.boardMouseEnter = function() {
-    // console.log('hovering over board tile: ', this.system);
-  };
   
   Tile.prototype.animateMoveTo = function(to, callback){
     var from, fromPos, toPos, dx, dy, ds;
@@ -214,20 +231,6 @@ ti4.constructors.Tile = (function(){
       }
   
       return { x: xPosition, y: yPosition };
-    }
-  };
-  
-  Tile.prototype.boardClick = function(){
-    // console.log('clicked board tile: ', this.position);
-    var boardTile = this;
-
-    if (ti4.state.restricted.available && ti4.state.restricted.available.indexOf(boardTile) > -1) {
-      var handTile = ti4.state.selectedHandTile;
-      // ti4.state.selectedHandTile = false;
-      handTile.handClick();
-      handTile.animateMoveTo(this, function(){
-        handTile.addToBoard(boardTile.position.ring, boardTile.position.n);
-      });
     }
   };
   
