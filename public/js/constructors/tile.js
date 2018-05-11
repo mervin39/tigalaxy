@@ -99,6 +99,7 @@ ti4.constructors.Tile = (function(){
     this.attachMouseEventsElement('hand');
     this.el.addEventListener('click', this.handClick.bind(this));
     this.el.addEventListener('mouseenter', this.handMouseEnter.bind(this));
+    this.el.addEventListener('mouseleave', this.handMouseLeave.bind(this));
   };
   
   Tile.prototype.attachMouseEventsElement = function(type){
@@ -133,7 +134,15 @@ ti4.constructors.Tile = (function(){
   };
   
   Tile.prototype.handMouseEnter = function() {
-    // console.log('hovering over hand tile: ', this.system);
+    // check this is a hand tile
+    if ( !this.position.hand ) { return }
+    this.el.classList.add('zoomed');
+  };
+  
+  Tile.prototype.handMouseLeave = function() {
+    // check this is a hand tile
+    if ( !this.position.hand ) { return }
+    this.el.classList.remove('zoomed');
   };
   
   Tile.prototype.handClick = function() {
