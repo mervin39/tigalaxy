@@ -9,15 +9,15 @@ ti4.constructors.Tile = (function(){
   };
   
   var eventHandlers = {
-    handMouseEnter: function() {
-      var tile = this.tile;
+    handMouseEnter: function(tile) {
+      tile = this.tile || tile;
       // check this is a hand tile
       if ( !tile.position.hand ) { return }
       tile.el.classList.add('zoomed');
     },
     
-    handMouseLeave: function() {
-      var tile = this.tile;
+    handMouseLeave: function(tile) {
+      tile = this.tile || tile;
       tile.el.classList.remove('zoomed');
     },
     
@@ -60,15 +60,18 @@ ti4.constructors.Tile = (function(){
       });
     },
     
-    boardClick:  function(){
+    boardClick:  function(tile){
       // console.log('clicked board tile: ', this.position);
-      var boardTile = this.tile;
-  
+      var boardTile = this.tile || tile;
+      
+      // if selected tile in hand can go to this board location
       if (ti4.state.restricted.available && ti4.state.restricted.available.indexOf(boardTile) > -1) {
         var handTile = ti4.state.selectedHandTile;
         eventHandlers.handClick(handTile);
         handTile.el.removeEventListener('mouseenter', eventHandlers.handMouseEnter);
         handTile.el.removeEventListener('click', eventHandlers.handClick);
+        ti4.hand.layout.splice(handTile.position.hand, 1);
+        ti4.hand.refresh();
         handTile.animateMoveTo(boardTile, function(){
           handTile.addToBoard(boardTile.position.ring, boardTile.position.n);
         });

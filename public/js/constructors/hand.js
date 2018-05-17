@@ -1,3 +1,4 @@
+/*global ti4*/
 ti4.constructors.Hand = (function(){
   var Hand = function(hand){
     var z = 44
@@ -8,7 +9,8 @@ ti4.constructors.Hand = (function(){
     this.el = document.getElementById('hand');
     this.layout = [];
     for ( let i = 0; i < hand.length; i++ ) {
-      this.layout[i] = new ti4.constructors.Tile(ti4.systems[hand[i]]);
+      var tile = new ti4.constructors.Tile(ti4.systems[hand[i]]);
+      this.layout[i] = tile
     }
   };
   
@@ -19,6 +21,19 @@ ti4.constructors.Hand = (function(){
     }
   }
   
+  Hand.prototype.refresh = function(){
+    var hand = this;
+    for ( let i = 0; i < hand.layout.length; i++) {
+      var tile = hand.layout[i]
+      tile.position.hand = i;
+      var isAt = parseFloat(tile.el.style.top)
+      var shouldBeAt = hand.getHexPos(i);
+      tile.el.style.top = shouldBeAt + 'px';
+
+    }
+  }
+  
+  // return css top for tile in position i
   Hand.prototype.getHexPos = function(i){
     var handHeight = this.el.clientHeight;
     var tileHeight = 
@@ -27,11 +42,12 @@ ti4.constructors.Hand = (function(){
     var x;
     if ( numberOfTiles * tileHeight < handHeight ) {
       x = handHeight / ( numberOfTiles + 1 ); 
-      return x * ( i + 0.5 );
+      return parseFloat( ( x * ( i + 0.5 ) ).toFixed(2) );
     } else {
       x = ( handHeight - tileHeight ) / ( numberOfTiles - 1 );
-      return x * i;
+      return parseFloat( ( x * i ).toFixed(2) );
     }
-  }
+  };
+  
   return Hand;
 }())
