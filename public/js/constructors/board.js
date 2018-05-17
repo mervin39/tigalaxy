@@ -152,7 +152,10 @@ ti4.constructors.Board = (function(){
     var tiles = [];
     for ( let i = 0; i < positions.length; i++ ) {
       let pos = positions[i];
-      tiles.push(this.layout[pos[0]][pos[1]]);
+      if ( this.layout[pos[0]] && this.layout[pos[0]][pos[1]] ) {
+        tiles.push(this.layout[pos[0]][pos[1]]);
+        
+      }
     }
     return tiles;
     
