@@ -2,28 +2,53 @@
 
 ti4.constructors.Board = (function(){
   var Board = function(layout){
-    layout = [['unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced'],['unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced','unplaced',]];
+    var board = this;
+    board.el = document.getElementById('game-board');
+    
+    // attach rotation event listeners
+    document.addEventListener('keydown', (event) => {
+      let keyName = event.key;
+      switch (keyName) {
+        case 'a':
+        case 'ArrowLeft':
+          board.rotate(-1);
+          break;
+        case 'd':
+        case 'ArrowRight':
+          board.rotate(1);
+          break;
+        case 'a':
+          // code
+          break;          
+        default:
+          // code
+      }
+    });
+    
+    // construct layout
     this.layout = [];
-    this.el = document.getElementById('game-board');
     for ( let ring = 0; ring < layout.length; ring++ ) {
       this.layout[ring] = [];
       for ( let n = 0; n < layout[ring].length; n++ ) {
-        this.layout[ring][n] = new ti4.constructors.Tile(ti4.systems['unplaced']);
+        this.layout[ring][n] = new ti4.constructors.Tile(ti4.systems[layout[ring][n]]);
       }
     }
   };
+  
   
   Board.prototype.render = function(){
     for ( let ring = 0; ring < this.layout.length; ring++ ) {
       for ( let n = 0; n < this.layout[ring].length; n++ ) {
         let tile = this.layout[ring][n];
-        tile.addToBoard(ring, n);
+        tile.addToBoard(ring, n, this.rotation);
       }
     }
   };
   
-  Board.prototype.getHexPos = function (ring, n){
+  Board.prototype.getHexPos = function (ring, n, rotation){
     var i, j, x, y;
+    rotation = rotation || 0;
+    n = ( n + ( ring * rotation ) ) % ( ring * 6 );
     switch (ring) {
         case 0:
             [i, j] = [3,6];
@@ -181,5 +206,31 @@ ti4.constructors.Board = (function(){
       return false;
     }
   };
+  
+  Board.prototype.rotate = function(n){
+    if ( ti4.lock ) { return };
+    if ( !n ) { n = 0 }
+    if ( this.rotation == undefined ) {
+      this.rotation = 0;
+    }
+    this.rotation = ( ( this.rotation + n ) % 6 + 6 ) % 6;
+    this.refresh();
+  }
+  
+  Board.prototype.refresh = function(){
+    var rotation = this.rotation;
+    var board = this;
+    for ( let ring = 0; ring < board.layout.length; ring++ ) {
+      for ( let n = 0; n < board.layout[ring].length; n++ ) {
+        let tile = board.layout[ring][n];
+        let newPos = board.getHexPos(ring, n, rotation);
+        ti4.lock = true;
+        tile.animateMoveTo({
+          x: newPos[0] + 1, 
+          y: newPos[1] + 1
+        }, 'refreshBoard');
+      }
+    }
+  }
   return Board;
 }());

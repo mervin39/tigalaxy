@@ -61,6 +61,7 @@ ti4.constructors.Tile = (function(){
     },
     
     boardClick:  function(tile){
+      if ( ti4.lock ) { return }
       // console.log('clicked board tile: ', this.position);
       var boardTile = this.tile || tile;
       
@@ -72,8 +73,9 @@ ti4.constructors.Tile = (function(){
         handTile.el.removeEventListener('click', eventHandlers.handClick);
         ti4.hand.layout.splice(handTile.position.hand, 1);
         ti4.hand.refresh();
-        handTile.animateMoveTo(boardTile, function(){
+        handTile.animateMoveTo(boardTile, 'placeHandTile',function(){
           handTile.addToBoard(boardTile.position.ring, boardTile.position.n);
+          ti4.board.refresh();
         });
       }
     },
@@ -140,12 +142,9 @@ ti4.constructors.Tile = (function(){
   
   // add this tile to board
   // after removing whatever is already there
-  Tile.prototype.addToBoard = function(ring, n){
+  Tile.prototype.addToBoard = function(ring, n, rotation){
     var tile = this;
-    
-    console.log('adding to ', ring, n);
     // what is currently at ring, n?
-    
     if ( ti4.board.layout[ring][n] != tile ) {
       ti4.board.layout[ring][n].el.remove();
       ti4.board.layout[ring][n] = tile;
@@ -153,7 +152,7 @@ ti4.constructors.Tile = (function(){
     tile.position.ring = ring;
     tile.position.n = n;
     this.position.hand = false;
-    var pos = ti4.board.getHexPos(ring, n);
+    var pos = ti4.board.getHexPos(ring, n, rotation);
     ti4.board.el.appendChild(tile.el);
     tile.el.style.left = pos[0] + 'px';
     tile.el.style.top  = pos[1] + 'px';
@@ -165,7 +164,6 @@ ti4.constructors.Tile = (function(){
   };
   
   Tile.prototype.addToHand = function(i){
-    console.log('adding to hand position ', i);
     var elTile = this.el;
     this.position.hand = i;
     ti4.hand.el.appendChild(elTile);
@@ -209,33 +207,52 @@ ti4.constructors.Tile = (function(){
   };
   
 
-  
-  Tile.prototype.animateMoveTo = function(to, callback){
+  /**
+   * moves tile to new location
+   * @param to
+   * this is horrible and needs rewriting
+   */
+  Tile.prototype.animateMoveTo = function(to, type, callback){
     var from, fromPos, toPos, dx, dy, ds;
+    ti4.lock = true;
     from = this;
-    fromPos = getPosition(from.el);
-    toPos = getPosition(to.el);
-    dx = toPos.x - fromPos.x;
-    dy = toPos.y - fromPos.y;
-    ds =  to.el.clientWidth / from.el.clientWidth;
-    from.el.addEventListener('transitionend', callback, {once: true});
+    fromPos = from.el.getBoundingClientRect();
+    
+    // if not already a position
+    if ( isNaN(to.x) || isNaN(to.y) ) {
+      // is element
+      toPos = to.el.getBoundingClientRect();
+      ds = to.el.clientWidth / from.el.clientWidth;
+    } else { 
+      toPos = to;
+      ds = 1;
+    }
+    if ( type == 'refreshBoard' ) {
+      var parent = from.el.parentNode;
+      dx = toPos.x - fromPos.x + parent.getBoundingClientRect().x;
+      dy = toPos.y - fromPos.y + parent.getBoundingClientRect().y;
+    } else {
+      dx = toPos.x - fromPos.x;
+      dy = toPos.y - fromPos.y;
+    }
+    
+    var defaultCallback = function(){
+      // clear any transform stuff
+      from.el.style.transition = 'none';
+      from.el.style.transform = '';
+      from.el.style.left = toPos.x + 'px';
+      from.el.style.top  = toPos.y + 'px';
+      
+      // unlock animations
+      ti4.lock = false;
+      if (callback) { callback() };
+    }
+    from.el.addEventListener('transitionend', defaultCallback, {once: true});
     from.el.style.transition = 'all 0.5s ease-out';
     from.el.style.transformOrigin = 'top left';
     from.el.style.transform  = 'translate(' + dx + 'px, ' + dy + 'px) scale(' + ds + ')';
-    
-    function getPosition(element) {
-      var xPosition = 0;
-      var yPosition = 0;
+  }
   
-      while(element) {
-          xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-          yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-          element = element.offsetParent;
-      }
-  
-      return { x: xPosition, y: yPosition };
-    }
-  };
   
   // available, unavailable, false
   Tile.prototype.highlightClass = function(className) {
@@ -248,6 +265,11 @@ ti4.constructors.Tile = (function(){
       tile.el.classList.add(className);
     }
   };
+  
+  Tile.prototype.rotate = function(rotation){
+    var tile = this;
+    console.log('rotating ', tile);
+  }
   
   return Tile;
 }());
