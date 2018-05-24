@@ -232,5 +232,26 @@ ti4.constructors.Board = (function(){
       }
     }
   }
+  
+  Board.prototype.getUrl = function(){
+    var href = window.location.href
+    var layout = this.layout;
+    var url = href + '?';
+    for ( let ring = 0; ring < layout.length; ring++ ) {
+      for ( let n = 0; n < layout[ring].length; n++ ) {
+        let tile = layout[ring][n];
+        let system = tile.system.tileNumber;
+        url += system
+        if ( n + 1 < layout[ring].length ) {
+          url += ',';
+        }
+      }
+      
+      if ( ring + 1 < layout.length ) { 
+        url += ';';
+      };
+    }
+    console.log(url)
+  }
   return Board;
 }());
